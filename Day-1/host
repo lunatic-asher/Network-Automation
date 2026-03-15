@@ -1,0 +1,21 @@
+---
+- name: The Recovery Play
+  hosts: aruba_switches
+  gather_facts: false
+
+  tasks:
+    - name: Get Version
+      raw: "show version"
+      register: output
+
+    - name: Print Version
+      debug:
+        var: output.stdout_lines
+
+    - name: Final attempt using raw
+      raw: "show version"
+      register: output
+
+    - name: Show the result
+      debug:
+        var: output.stdout_lines
