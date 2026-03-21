@@ -1,0 +1,32 @@
+Auto-Switch# show running-config
+Current configuration:
+!
+!Version ArubaOS-CX Virtual.10.13.1110
+!export-password: default
+hostname Auto-Switch
+user admin group administrators password ciphertext AQBapYnEb7cUhNQ3d2HFlmxEcp8+L+02SxM3juy0en+ySJvOYgAAAJAD2ENuz1JvDrEEqTjxUI858NFfwqBrJUIEO4IQeyhqN5rVFSCsQgjnyPA3rhFNUSM5cb+MTl7CqzEZV/JVNXY6tNvGhZ+9JDo9HN0rDV8r2OOf8sws5sOptd/A6BrrPGYW
+no cdp enable
+!
+!
+!
+!
+!
+!
+ssh server vrf default
+no ssh server vrf mgmt
+vlan 1
+interface mgmt
+    no shutdown
+    ip dhcp
+interface 1/1/1
+    no shutdown
+    no lldp transmit
+    no lldp receive
+    ip address 192.168.99.100/24
+ip route 0.0.0.0/0 192.168.99.1
+!
+!
+!
+!
+!
+https-server vrf mgmt

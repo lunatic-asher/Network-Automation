@@ -1,0 +1,14 @@
+---
+- name: Config_Pull
+  hosts: juniper_devices
+  gather_facts: false
+
+  tasks:
+    - name: Get Version
+      ansible.netcommon.cli_command:
+        command: show configuration
+      register: output
+
+    - name: Print Version
+      debug:
+        var: output.stdout_lines

@@ -1,0 +1,83 @@
+root@Juniper_Auto# show
+## Last changed: 2026-03-21 17:15:11 UTC
+version 23.1R1.8;
+system {
+    host-name Juniper_Auto;
+    root-authentication {
+        encrypted-password "$6$h9EOE9vR$V4LyadMC0wblaQULlT8s4Yi4/JTHffD8MvpJ8xqZChhnplkA/BWALxSlQKZnxeyr6Qswm4d4d0Z//BCmKxzuP."; ## SECRET-DATA
+    }
+    services {
+        ssh;
+    }
+    arp {
+        aging-timer 5;
+    }
+    syslog {
+        file interactive-commands {
+            interactive-commands any;
+        }
+        file messages {
+            any notice;
+            authorization info;
+        }
+    }
+    processes {
+        dhcp-service {
+            traceoptions {
+                file dhcp_logfile size 10m;
+                level all;
+                flag packet;
+            }
+        }
+    }
+}
+interfaces {
+    ge-0/0/0 {
+        unit 0 {
+            family inet {
+                address 192.168.99.20/24;
+            }
+        }
+    }
+    fxp0 {
+        unit 0 {
+            family inet {
+                dhcp {
+                    vendor-id Juniper-ex9214-VM69BEB407D3;
+                }
+            }
+            family inet6 {
+                dhcpv6-client {
+                    client-type stateful;
+                    client-ia-type ia-na;
+                    client-identifier duid-type duid-ll;
+                    vendor-id Juniper:ex9214:VM69BEB407D3;
+                }
+            }
+        }
+    }
+}
+multi-chassis {
+    mc-lag {
+        consistency-check;
+    }
+}
+routing-options {
+    static {
+        route 0.0.0.0/0 next-hop 192.168.99.1;
+    }
+}
+protocols {
+    router-advertisement {
+        interface fxp0.0 {
+            managed-configuration;
+        }
+    }
+    lldp {
+        interface all;
+    }
+    lldp-med {
+        interface all;
+    }
+}
+
