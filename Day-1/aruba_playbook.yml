@@ -5,17 +5,10 @@
 
   tasks:
     - name: Get Version
-      raw: "show version"
+      ansible.netcommon.cli_command:
+        command: show version
       register: output
 
     - name: Print Version
-      debug:
-        var: output.stdout_lines
-
-    - name: Final attempt using raw
-      raw: "show version"
-      register: output
-
-    - name: Show the result
       debug:
         var: output.stdout_lines
