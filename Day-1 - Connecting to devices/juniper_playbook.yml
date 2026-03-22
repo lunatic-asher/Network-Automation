@@ -4,7 +4,7 @@
   gather_facts: false
 
   tasks:
-    - name: Get Version
+    - name: Get config
       ansible.netcommon.cli_command:
         command: show configuration
       register: output
