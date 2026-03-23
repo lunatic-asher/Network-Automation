@@ -5,8 +5,8 @@
 
   tasks:
     - name: Get config
-      ansible.netcommon.cli_command:
-        command: show configuration
+      junipernetworks.junos.junos_command:
+        commands: show configuration
       register: output
 
     - name: Print Version

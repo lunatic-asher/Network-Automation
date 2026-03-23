@@ -1,0 +1,20 @@
+--- 
+- name: config changes
+  hosts: juniper_devices
+  gather_facts: false
+
+  tasks:
+    - name: Configures Loopback 0
+      junipernetworks.junos.junos_config: 
+        lines: 
+          - set interfaces lo0 unit 0 family inet address 1.1.1.1/32
+        comment: "Configured via ansible"
+
+    - name: Validate change
+      junipernetworks.junos.junos_command:
+        commands: show configuration interfaces lo0
+      register: output
+
+    - name: Print interface 
+      debug:
+        var: output.stdout_lines
