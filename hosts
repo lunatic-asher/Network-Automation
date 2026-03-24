@@ -1,12 +1,15 @@
-[aruba_switches]
-Auto-Switch ansible_host=192.168.99.100
-
-[aruba_switches:vars]
-
-ansible_connection=network_cli
-ansible_network_os=arubanetworks.aoscx.aoscx
-ansible_user=admin
-ansible_password=Admin@eve
+all:
+  children:
+    core_switches:
+      hosts:
+        core-switch:
+          ansible_host: 192.168.99.100
+          ansible_user: admin
+          ansible_password: <your_password>
+          ansible_network_os: aruba.aoscx.aoscx
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: True
+          ansible_httpapi_validate_certs: False
 
 [juniper_devices]
 Juniper_Auto ansible_host=192.168.99.20

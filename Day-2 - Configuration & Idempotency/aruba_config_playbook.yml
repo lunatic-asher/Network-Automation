@@ -1,0 +1,36 @@
+---
+- name: Day 3 - Core Switch L3 & Trunk Configuration
+  hosts: core-switch
+  collections:
+    - aruba.aoscx
+  tasks:
+    - name: 1. Create VLANs (Engineering, HR, Mgmt)
+      aoscx_vlan:
+        vlan_id: "{{ item.id }}"
+        name: "{{ item.name }}"
+        state: create
+      loop:
+        - { id: 10, name: "Engineering" }
+        - { id: 20, name: "HR" }
+        - { id: 100, name: "mgmt" }
+
+    - name: 2. Create SVIs and Assign IPs
+      aoscx_vlan_interface:
+        vlan_id: "{{ item.id }}"
+        ipv4: ["{{ item.ip }}"]
+        state: create
+      loop:
+        - { id: 10, ip: "10.0.10.1/24" }
+        - { id: 20, ip: "10.0.20.1/24" }
+        - { id: 100, ip: "10.0.100.1/24" }
+
+    - name: 3. Configure Downstream Trunks to Aggregation Switches
+      aoscx_interface:
+        name: "{{ item }}"
+        vlan_mode: native-untagged
+        vlan_tag: 1  # Native VLAN 1
+        vlan_trunks: [10, 20, 100]
+        state: update
+      loop:
+        - 1/1/1
+        - 1/1/2
