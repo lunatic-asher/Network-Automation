@@ -1,27 +1,27 @@
-import requests 
+import requests
 import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-login_url = f"https://{192.168.99.30}/rest/v10.13/login"
+switch_ip = "192.168.99.30"
+login_url = f"https://{switch_ip}/rest/v10.13/login"
 
 Credentials = {
-    "username": admin,
-    "password": Admin@eve
+    "username": "admin",
+    "password": "Admin@eve"
 }
 
-print(f"Attempting to log into Switch-1 at {192.168.99.30}")
+print(f"Attempting to log into Switch-1 at {switch_ip}...")
 
-try: 
-    respone = requests.post(login_url, data=Credentials, verify=False, timeout=5)
-
-    if respone.static_code == 200: 
-        print("Sucess! You are Logged-in.")
-        print(f"Session Cookie Received: {respone.cookies.get_dict()}")
+try:
+    response = requests.post(login_url, data=Credentials, verify=False, timeout=5)
+    
+    if response.status_code == 200:
+        print("✅ Success! You are Logged-in.")
+        print(f"Session Cookie Received: {response.cookies.get_dict()}")
     else:
-        print("Failed to Login")
-        print(respone.text)
+        print("❌ Failed to Login")
+        print(response.text)
 
 except Exception as e:
-    print(f"Connection Failed: {e}")
-    
+    print(f"🚨 Connection Failed: {e}")
