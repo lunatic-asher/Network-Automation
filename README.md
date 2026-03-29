@@ -12,15 +12,22 @@ This repository tracks my hands-on journey into Network Automation. It serves as
 ---
 
 ## 📂 Repository Architecture
-This project utilizes a **Global Inventory Architecture**. Instead of maintaining separate credential files for every lab, a single source of truth is kept at the root directory.
 
 ```text
-Netwrok-Automation/
-├── ansible.cfg          # Global Ansible settings (timeouts, strict host checking)
-├── hosts                # Global inventory file (IPs, credentials, OS variables)
-├── README.md            # Project documentation
-├── Day-1 - Connecting/  # Discovery and telemetry playbooks
-│   ├── aruba_playbook.yml
-│   └── juniper_playbook.yml
-└── Day-2/               # State changes and configuration management
-    └── juniper_config_playbook.yml
+NETWORK-AUTOMATION/
+├── Automation - Python/
+│   ├── .venv/                           # Primary Python Virtual Environment (Git Ignored)
+│   ├── Day-1/
+│   │   └── auth.test.py                 # Aruba CX REST API authentication & session handling
+│   └── Day-2/
+│       └── Telent/
+│           ├── .gitignore               # Ignores local venv files
+│           └── telent.py                # Legacy CLI automation script via telnetlib
+│
+├── Automation - YAML/                   # Ansible & YAML based declarative automation
+│   ├── Day-1 - Discovery & Telemetry/   # Playbooks for state gathering
+│   ├── Day-2 - Configuration & Idempotency/ # Playbooks for pushing config changes
+│   ├── ansible.cfg                      # Main Ansible configuration file
+│   └── hosts                            # Ansible inventory file
+│
+└── README.md                            # Project documentation
