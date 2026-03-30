@@ -15,11 +15,11 @@ try:
     response = requests.post(login_url, data=Credentials, verify=False, timeout=5)
     
     if response.status_code == 200:
-        print("✅ Success! You are Logged-in.")
+        print(" Success! You are Logged-in.")
         print(f"Session Cookie Received: {response.cookies.get_dict()}")
     else:
-        print("❌ Failed to Login")
+        print(" Failed to Login")
         print(response.text)
 
 except Exception as e:
-    print(f"🚨 Connection Failed: {e}")
+    print(f" Connection Failed: {e}")

@@ -1,27 +1,24 @@
-# Multi-Vendor Network Automation Lab 🚀
+# 🚀 Network Automation Journey
 
-This repository tracks my hands-on journey into Network Automation. It serves as a centralized, infrastructure-as-code (IaC) environment to provision, manage, and pull telemetry from a multi-vendor network topology using Ansible and EVE-NG.
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
+![ArubaOS-CX](https://img.shields.io/badge/Aruba-AOS--CX-FF8300.svg)
+![NetDevOps](https://img.shields.io/badge/NetDevOps-Automation-success.svg)
 
-## 🧰 Tech Stack & Environment
-* **Orchestration:** Ansible Core (v2.17+)
-* **Hypervisor:** EVE-NG (Bare Metal)
-* **Vendors:** * Aruba (AOS-CX Virtual)
-  * Juniper (vEX / Junos)
-* **Connectivity:** A custom virtual NAT Bridge (Cloud 9) was engineered to isolate lab traffic from the physical ISP router while maintaining inbound/outbound connectivity.
+Welcome to my Network Automation repository! This project serves as a practical, hands-on lab environment documenting the transition from traditional CLI-based NOC engineering to modern infrastructure-as-code (IaC) and API-driven automation. 
 
----
+The primary testing environment utilizes **EVE-NG** running **Aruba AOS-CX** virtual switches.
 
 ## 📂 Repository Architecture
 
 ```text
 NETWORK-AUTOMATION/
 ├── Automation - Python/
-│   ├── .venv/                           # Primary Python Virtual Environment (Git Ignored)
+│   ├── .venv/                           # Local Python Virtual Environment (Git Ignored)
 │   ├── Day-1/
 │   │   └── auth.test.py                 # Aruba CX REST API authentication & session handling
 │   └── Day-2/
 │       └── Telent/
-│           ├── .gitignore               # Ignores local venv files
+│           ├── .gitignore               # Ignores local venv binaries
 │           └── telent.py                # Legacy CLI automation script via telnetlib
 │
 ├── Automation - YAML/                   # Ansible & YAML based declarative automation
