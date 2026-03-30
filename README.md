@@ -1,4 +1,4 @@
-# 🚀 Network Automation Journey
+#  Network Automation Journey
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![ArubaOS-CX](https://img.shields.io/badge/Aruba-AOS--CX-FF8300.svg)
