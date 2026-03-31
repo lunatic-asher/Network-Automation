@@ -1,5 +1,7 @@
 import requests
+import urllib3
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 switch_ip = "192.168.99.30"
 login_url = f"https://{switch_ip}/rest/v10.13/login"
@@ -22,4 +24,4 @@ try:
         print(response.text)
 
 except Exception as e:
-    print(f" Connection Failed: {e}")
+    print(f"Connection Failed: {e}")
