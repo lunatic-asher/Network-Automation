@@ -1,0 +1,31 @@
+Switch-1# show running-config
+Current configuration:
+!
+!Version ArubaOS-CX Virtual.10.13.1110
+!export-password: default
+hostname Switch-1
+user admin group administrators password ciphertext AQBapbMWZ6/eCS+5524YiHRT25yxZlNBkdTI4p7PGvfKaRb2YgAAALslfhPaQdKnnpWXiIRTsZUu1FT65lMcD4HZ/qQ8C8fgTFwnNrwMtvIyGBA55jusMzUGIrLkAoznZ5b1XtX1972D+KE5xeftRyyd2W4+wt/e++zZEiUgff8MA/Q06Q1RHo7C
+user eve-ng group administrators password ciphertext AQBapS2QUQIXDXl1L05TOy3/7GMPZPIDsTWlT09tz7EVknx/YgAAAJQNqEHTT2g1nJLXIvdyJHylVB9+4XdyLDj8/kOsoGTPQvoko5O4iUFhJjyrWnYU/61pzCVs8lkjYxPU3CUmOPE9H76G1tqprGDRHoMeMikYw338sQOZxchihcSFzqXuj0Ng
+ntp server pool.ntp.org minpoll 4 maxpoll 4 iburst
+ntp enable
+!
+!
+!
+!
+!
+!
+ssh server vrf mgmt
+telnet server vrf default
+telnet server vrf mgmt
+vlan 1
+interface mgmt
+    no shutdown
+    ip static 192.168.99.30/24
+    default-gateway 192.168.99.1
+ip route 0.0.0.0/0 192.168.99.1
+!
+!
+!
+!
+!
+https-server vrf mgmt
